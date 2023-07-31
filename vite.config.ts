@@ -6,6 +6,7 @@ import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,22 +20,23 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
+      // 这里除了引入 vue 以外还可以引入pinia、vue-router、vueuse等，
+      // 甚至你还可以使用自定义的配置规则，见 https://github.com/antfu/unplugin-auto-import#configuration
       imports: ["vue", "@vueuse/core"],
       eslintrc: {
         enabled: false,
         filepath: "./.eslintrc-auto-import.json",
         globalsPropValue: true,
       },
+      // 第三方组件库的解析器
       resolvers: [
         // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
         ElementPlusResolver(),
         IconsResolver({}),
       ],
       vueTemplate: true,
-      // 配置文件生成位置(false:关闭自动生成)
-      dts: false,
-      // dts: "src/types/auto-imports.d.ts",
+      // 配置文件生成位置
+      dts: "src/types/auto-imports.d.ts",
     }),
     Components({
       resolvers: [
@@ -46,15 +48,20 @@ export default defineConfig({
           enabledCollections: ["ep"],
         }),
       ],
-      // 指定自定义组件位置(默认:src/components)
+      // 指定自定义组件位置(默认:src/components), 可以让我们使用自己定义组件的时候免去 import 的麻烦
       dirs: ["src/**/components"],
       // 配置文件位置(false:关闭自动生成)
-      dts: false,
-      // dts: "src/types/components.d.ts",
+      dts: "src/types/components.d.ts"
     }),
     Icons({
       // 自动安装图标库
       autoInstall: true,
+    }),
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [path.resolve(__dirname, "src/assets/icons")],
+      // 指定symbolId格式
+      symbolId: "icon-[dir]-[name]",
     }),
   ]
 })

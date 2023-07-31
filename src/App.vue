@@ -10,7 +10,7 @@ import HelloWorld from "@components/HelloWorld.vue";
       <el-button type="warning"><i-ep-WarningFilled />Warning</el-button>
       <el-button type="danger"><i-ep-WarnTriangleFilled />Danger</el-button>
     </div>
-
+    <svg-icon icon-class="vue" />
   </div>
   <HelloWorld msg="Vite + Vue" />
 </template>
