@@ -17,6 +17,16 @@ export default defineConfig({
       "@components": path.resolve(__dirname, "src/components"),
     }
   },
+  css: {
+    // CSS 预处理器
+    preprocessorOptions: {
+      //define global scss variable
+      scss: {
+        javascriptEnabled: true,
+        additionalData: `@use "@/assets/styles/variable.scss" as *;`
+      }
+    }
+  },
   plugins: [
     vue(),
     AutoImport({
