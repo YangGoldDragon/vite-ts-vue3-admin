@@ -18,13 +18,22 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./", //解析相对模块的基地址，默认是当前目录
+    "paths": {
+      //路径映射，相对于baseUrl
+      "@/*": ["src/*"]
+    },
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite-env.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "baseUrl": "./", //解析非相对模块的基地址，默认是当前目录
-  "paths": {
-    //路径映射，相对于baseUrl
-    "@/*": ["src/*"]
-  }
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite-env.d.ts",
+    "**/*.d.ts"
+  ],
+  "exclude": ["node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
+

@@ -36,17 +36,17 @@ export default defineConfig(({ mode }): UserConfig => {
         // 这里除了引入 vue 以外还可以引入pinia、vue-router、vueuse等，
         // 甚至你还可以使用自定义的配置规则，见 https://github.com/antfu/unplugin-auto-import#configuration
         imports: ["vue", "@vueuse/core"],
-        eslintrc: {
-          enabled: false,
-          filepath: "./.eslintrc-auto-import.json",
-          globalsPropValue: true,
-        },
         // 第三方组件库的解析器
         resolvers: [
           // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
-          ElementPlusResolver(),
+          ElementPlusResolver({}),
           IconsResolver({}),
         ],
+        eslintrc: {
+          enabled: true,
+          filepath: "./.eslintrc-auto-import.json",
+          globalsPropValue: true,
+        },
         vueTemplate: true,
         // 配置文件生成位置
         dts: "src/types/auto-imports.d.ts",

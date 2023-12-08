@@ -1,5 +1,5 @@
 {
-  "name": "vite-vue3-element-admin",
+  "name": "vite-ts-vue3-admin",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
+    "axios": "^1.4.0",
     "element-plus": "^2.3.8",
     "pinia": "^2.1.6",
     "vue": "^3.2.47"
@@ -21,7 +22,7 @@
     "sass": "^1.64.1",
     "typescript": "^5.0.2",
     "unocss": "^0.54.0",
-    "unplugin-auto-import": "^0.16.6",
+    "unplugin-auto-import": "^0.15.3",
     "unplugin-icons": "^0.16.5",
     "unplugin-vue-components": "^0.25.1",
     "vite": "^4.3.9",
